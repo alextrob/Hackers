@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class WZPostModel;
+
 @interface WZPostView : UIView
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *domainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detail1Label;
+@property (weak, nonatomic) IBOutlet UILabel *detail2Label;
+@property (weak, nonatomic) IBOutlet UIImageView *readBadgeImageView;
+
+@property (nonatomic, strong) WZPostModel *post;
+@property (nonatomic) BOOL read;
 
 @end

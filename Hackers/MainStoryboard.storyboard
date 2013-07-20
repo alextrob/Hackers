@@ -42,91 +42,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="News Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="275" translatesAutoresizingMaskIntoConstraints="NO" id="V5Q-hv-dC3" userLabel="Title">
-                                            <rect key="frame" x="35" y="9" width="275" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="275" id="xpU-YU-TuM"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="shadowOffset" width="0.0" height="0.0"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngT-AR-F0S" userLabel="Metadata View">
-                                            <rect key="frame" x="35" y="27" width="275" height="36"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="domain.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-bY-X0Y" userLabel="Domain">
-                                                    <rect key="frame" x="0.0" y="0.0" width="252" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="252" id="J8W-wi-VGm"/>
-                                                        <constraint firstAttribute="height" constant="21" id="pxM-v7-MA8"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" red="0.31764705879999999" green="0.40000000000000002" blue="0.56862745100000001" alpha="1" colorSpace="deviceRGB"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10 points by blah" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0D-f2-7g6" userLabel="Metadata 1">
-                                                    <rect key="frame" x="0.0" y="18" width="127" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="127" id="Si0-hA-riz"/>
-                                                        <constraint firstAttribute="height" constant="21" id="m2G-Dm-ckw"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 hour ago · 10 comments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0V-Pf-NuH" userLabel="Metadata 2">
-                                                    <rect key="frame" x="135" y="18" width="140" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="SvQ-KX-jzH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                                </label>
-                                            </subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-I9-NDW" customClass="WZPostView">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="FJU-bY-X0Y" firstAttribute="leading" secondItem="ngT-AR-F0S" secondAttribute="leading" id="I1d-gX-Hsv"/>
-                                                <constraint firstItem="T0D-f2-7g6" firstAttribute="top" secondItem="ngT-AR-F0S" secondAttribute="top" constant="18" id="Ifd-oN-Gsi"/>
-                                                <constraint firstItem="R0V-Pf-NuH" firstAttribute="top" secondItem="ngT-AR-F0S" secondAttribute="top" constant="18" id="PDj-1a-DHp"/>
-                                                <constraint firstItem="FJU-bY-X0Y" firstAttribute="top" secondItem="ngT-AR-F0S" secondAttribute="top" id="QvC-ch-jfw"/>
-                                                <constraint firstAttribute="height" constant="36" id="Xa4-mg-atS"/>
-                                                <constraint firstItem="R0V-Pf-NuH" firstAttribute="top" secondItem="T0D-f2-7g6" secondAttribute="top" id="YHy-6c-tsi"/>
-                                                <constraint firstItem="T0D-f2-7g6" firstAttribute="leading" secondItem="ngT-AR-F0S" secondAttribute="leading" id="YLD-2H-S9O"/>
-                                                <constraint firstItem="R0V-Pf-NuH" firstAttribute="trailing" secondItem="ngT-AR-F0S" secondAttribute="trailing" id="aJV-RX-B7c"/>
-                                                <constraint firstItem="R0V-Pf-NuH" firstAttribute="leading" secondItem="T0D-f2-7g6" secondAttribute="trailing" constant="8" symbolic="YES" id="rRr-1N-5Up"/>
-                                            </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" image="unread-badge.png" translatesAutoresizingMaskIntoConstraints="NO" id="TKc-12-Cra" userLabel="Unread badge">
-                                            <rect key="frame" x="11" y="31" width="12" height="12"/>
-                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="TKc-12-Cra" firstAttribute="leading" secondItem="0eV-31-z4v" secondAttribute="leading" constant="11" id="1Gw-lA-hVz"/>
-                                    <constraint firstAttribute="bottom" secondItem="V5Q-hv-dC3" secondAttribute="bottom" constant="44" id="OMI-Om-L96"/>
-                                    <constraint firstAttribute="trailing" secondItem="ngT-AR-F0S" secondAttribute="trailing" constant="10" id="Ofk-x3-QvG"/>
-                                    <constraint firstAttribute="bottom" secondItem="ngT-AR-F0S" secondAttribute="bottom" constant="11" id="RzT-zN-GWE"/>
-                                    <constraint firstItem="V5Q-hv-dC3" firstAttribute="top" secondItem="0eV-31-z4v" secondAttribute="top" constant="9" id="fnc-uR-X4D"/>
-                                    <constraint firstAttribute="centerY" secondItem="TKc-12-Cra" secondAttribute="centerY" id="gZR-b6-PrA"/>
-                                    <constraint firstItem="V5Q-hv-dC3" firstAttribute="trailing" secondItem="ngT-AR-F0S" secondAttribute="trailing" id="l0k-vN-K4k"/>
-                                    <constraint firstItem="ngT-AR-F0S" firstAttribute="leading" secondItem="V5Q-hv-dC3" secondAttribute="leading" id="vGb-kW-fNp"/>
+                                    <constraint firstItem="jL3-I9-NDW" firstAttribute="trailing" secondItem="0eV-31-z4v" secondAttribute="trailing" id="4Nz-0U-lto"/>
+                                    <constraint firstItem="jL3-I9-NDW" firstAttribute="top" secondItem="0eV-31-z4v" secondAttribute="top" id="J4d-UO-cdc"/>
+                                    <constraint firstItem="jL3-I9-NDW" firstAttribute="leading" secondItem="0eV-31-z4v" secondAttribute="leading" id="Wot-Ep-TPZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jL3-I9-NDW" secondAttribute="bottom" id="XhE-er-f1Z"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="detailLabel" destination="T0D-f2-7g6" id="CWc-Ev-JE0"/>
-                                    <outlet property="domainLabel" destination="FJU-bY-X0Y" id="O6p-3r-sWz"/>
-                                    <outlet property="moreDetailLabel" destination="R0V-Pf-NuH" id="99b-eB-xKz"/>
-                                    <outlet property="readBadgeImageView" destination="TKc-12-Cra" id="dRY-CP-3mV"/>
-                                    <outlet property="titleLabel" destination="V5Q-hv-dC3" id="gqA-y5-bWb"/>
+                                    <outlet property="postView" destination="jL3-I9-NDW" id="wp3-za-uCJ"/>
                                     <segue destination="LYY-JJ-fbY" kind="push" identifier="ShowCommentsSegue" customClass="" id="KY6-6m-g0D"/>
                                 </connections>
                             </tableViewCell>
@@ -569,7 +501,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Ask Hacker News" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RY-SO-Vc8">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Ask" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RY-SO-Vc8">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -646,7 +578,6 @@
         <image name="back-arrow.png" width="19" height="16"/>
         <image name="menu-icon.png" width="23" height="18"/>
         <image name="share-icon.png" width="23" height="18"/>
-        <image name="unread-badge.png" width="12" height="12"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

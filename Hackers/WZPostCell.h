@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class WZPostView;
+
 @interface WZPostCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *domainLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moreDetailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *readBadgeImageView;
+@property (weak, nonatomic) IBOutlet WZPostView *postView;
+
 @end

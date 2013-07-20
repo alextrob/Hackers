@@ -17,6 +17,7 @@
 #import "WZRead.h"
 #import "WZPostCell.h"
 #import "WZPostModel.h"
+#import "WZPostView.h"
 #import "WZNotify.h"
 
 #define kTitleUnreadTextColorWithWhite 0
@@ -301,24 +302,25 @@
     } else {    
         WZPostModel *post = [self activeNews][indexPath.row];
         WZPostCell *cell = [tableView dequeueReusableCellWithIdentifier:postCellIdentifier];
-        cell.detailLabel.text = [NSString stringWithFormat:@"%lu points by %@", (unsigned long)post.points, post.user];
-        cell.moreDetailLabel.text = [NSString stringWithFormat:@"%@ · %lu comments", post.timeAgo, (unsigned long)post.commentsCount];
-        cell.titleLabel.text = post.title;
-        if ([post.type isEqualToString:@"ask"]) {
-            cell.domainLabel.text = @"Ask Hacker News";
-        } else if ([post.type isEqualToString:@"ask"]) {
-            cell.domainLabel.text = @"Job";
-        } else {
-            cell.domainLabel.text = post.domain;
-        }
+        cell.postView.post = post;
+//        cell.detailLabel.text = [NSString stringWithFormat:@"%lu points by %@", (unsigned long)post.points, post.user];
+//        cell.moreDetailLabel.text = [NSString stringWithFormat:@"%@ · %lu comments", post.timeAgo, (unsigned long)post.commentsCount];
+//        cell.titleLabel.text = post.title;
+//        if ([post.type isEqualToString:@"ask"]) {
+//            cell.domainLabel.text = @"Ask Hacker News";
+//        } else if ([post.type isEqualToString:@"ask"]) {
+//            cell.domainLabel.text = @"Job";
+//        } else {
+//            cell.domainLabel.text = post.domain;
+//        }
         
         NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"self == %lu", post.id];
         NSArray *filteredReadNews = [_readNews filteredArrayUsingPredicate:filterPredicate];
         
         if (filteredReadNews.count > 0) {
-            cell.readBadgeImageView.hidden = YES;
+            cell.postView.read = YES;
         } else {
-            cell.readBadgeImageView.hidden = NO;
+            cell.postView.read = NO;
         }
         
         if ([_selectedIndexPath isEqual:indexPath]) {
@@ -336,7 +338,7 @@
     [_readNews addObject:[NSNumber numberWithInteger:post.id]];
     [WZHackersData.shared addRead:[NSNumber numberWithInteger:post.id]];
     WZPostCell *cell = (WZPostCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    cell.readBadgeImageView.hidden = YES;
+    cell.postView.read = YES;
     _selectedIndexPath = indexPath;
 }
 

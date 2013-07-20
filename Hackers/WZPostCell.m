@@ -9,16 +9,24 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WZPostCell.h"
+#import "WZPostView.h"
 
 @implementation WZPostCell
+
+//- (id)initWithCoder:(NSCoder *)aDecoder {
+//    if ((self = [super initWithCoder:aDecoder])) {
+//        _postView = [[[NSBundle mainBundle] loadNibNamed:@"WZPostView" owner:self options:nil] objectAtIndex:0];
+//    }
+//    return self;
+//}
 
 - (void)awakeFromNib {
     [self setTheme];
 }
 
 - (void)setTheme {
-    _titleLabel.textColor = [WZTheme titleTextColor];
-    _domainLabel.textColor = [WZTheme subtitleTextColor];
+    _postView.titleLabel.textColor = [WZTheme titleTextColor];
+    _postView.domainLabel.textColor = [WZTheme subtitleTextColor];
     if (self.selected) {
         self.backgroundColor = [WZTheme highlightedBackgroundColor];
     } else {
