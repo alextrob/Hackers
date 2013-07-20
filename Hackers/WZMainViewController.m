@@ -65,7 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self performSelector:@selector(deselectCurrentRow) withObject:nil afterDelay:0.3];
-    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [_menuButton setImage:[UIImage themeImageNamed:@"menu-icon"] forState:UIControlStateNormal];
 }
 
@@ -114,24 +114,24 @@
 }
 
 - (void)setupPullToRefresh {
-    UIColor *backgroundColor = [WZTheme backgroundColor];
-    
-    if (!_refreshControl) {
-        _refreshControl = [[UIRefreshControl alloc] init];
-        [_refreshControl addTarget:self action:@selector(sendFetchRequest:) forControlEvents:UIControlEventValueChanged];
-        _refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1];
-        self.refreshControl = _refreshControl;
-    }
-    _refreshControl.backgroundColor = backgroundColor;
-
-    if (!_tableViewBackgroundView) {
-        CGRect frame = self.tableView.bounds;
-        frame.origin.y = -frame.size.height;
-        _tableViewBackgroundView = [[UIView alloc] initWithFrame:frame];
-    
-        [self.tableView insertSubview:_tableViewBackgroundView atIndex:0];
-    }
-    _tableViewBackgroundView.backgroundColor = backgroundColor;
+//    UIColor *backgroundColor = [WZTheme backgroundColor];
+//    
+//    if (!_refreshControl) {
+//        _refreshControl = [[UIRefreshControl alloc] init];
+//        [_refreshControl addTarget:self action:@selector(sendFetchRequest:) forControlEvents:UIControlEventValueChanged];
+//        _refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1];
+//        self.refreshControl = _refreshControl;
+//    }
+//    _refreshControl.backgroundColor = backgroundColor;
+//
+//    if (!_tableViewBackgroundView) {
+//        CGRect frame = self.tableView.bounds;
+//        frame.origin.y = -frame.size.height;
+//        _tableViewBackgroundView = [[UIView alloc] initWithFrame:frame];
+//    
+//        [self.tableView insertSubview:_tableViewBackgroundView atIndex:0];
+//    }
+//    _tableViewBackgroundView.backgroundColor = backgroundColor;
 }
 
 
@@ -238,7 +238,7 @@
 - (void)updateTitle {
     switch (_newsType) {
         case WZNewsTypeTop:
-            self.title = @"Hacker News";
+            self.title = @"Top";
             break;
             
         case WZNewsTypeNew:
@@ -372,11 +372,12 @@
 #pragma - mark Menu
 
 - (IBAction)menuButtonPressed:(id)sender {
-    if ([[[WZDefaults appDelegate] viewController] isOpen]) {
-        [[[WZDefaults appDelegate] viewController] closeSlider:YES completion:nil];
-    } else {
-        [[[WZDefaults appDelegate] viewController] openSlider:YES completion:nil];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
+//    if ([[[WZDefaults appDelegate] viewController] isOpen]) {
+//        [[[WZDefaults appDelegate] viewController] closeSlider:YES completion:nil];
+//    } else {
+//        [[[WZDefaults appDelegate] viewController] openSlider:YES completion:nil];
+//    }
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kTitleFontName @"HelveticaNeue"
+#define kTitleFontName @"HelveticaNeue-Light"
 #define kTitleFontSize 15
 
 #define kBodyFontName @"HelveticaNeue-Light"

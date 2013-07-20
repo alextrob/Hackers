@@ -51,7 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *headerDomainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headerMetadata1Label;
 @property (weak, nonatomic) IBOutlet UILabel *headerMetadata2Label;
-@property (weak, nonatomic) IBOutlet OHAttributedLabel *headerTextView;
+@property (weak, nonatomic) IBOutlet UITextView *headerTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerDetailViewBottomSpacing;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTextViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTextViewBottomSpacing;
@@ -77,18 +77,6 @@
     _tableView.scrollsToTop = YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // set selected segement colours
-    // uses GCD as it wont work if run immediately
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self segmentDidChange:_segmentedControl];
-    });
-    
-    [[[WZDefaults appDelegate] viewController] setLocked:YES];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self segmentDidChange:_segmentedControl];
@@ -100,7 +88,6 @@
         [self removeOrientationNotifications];
         _isNavigatingBack = NO;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [[[WZDefaults appDelegate] viewController] setLocked:NO];
     }
 }
 
@@ -159,7 +146,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:WZWebViewControllerSwipeRight object:nil];
 }
 
-//- (void)didRotate:(id)sender {
+- (void)didRotate:(id)sender {
 //    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
 //    BOOL isLandscape = UIInterfaceOrientationIsLandscape(orientation);
 //    BOOL webViewVisible = _segmentedControl.selectedSegmentIndex == 1;
@@ -171,7 +158,7 @@
 ////    } else {
 ////        _webViewTopSpacing.constant = kNavigationBarHeight;
 ////    }
-//}
+}
 
 - (void)showDefaultView {
     if (![self postIsAskOrJob]) {
@@ -201,13 +188,13 @@
         _segmentedControl.hidden = YES;
     }
 
-    NSDictionary *textAttributes =  @{
-                                      UITextAttributeFont: [UIFont fontWithName:kTitleFontName size:13],
-                                      UITextAttributeTextColor: [WZTheme titleTextColor],
-                                      UITextAttributeTextShadowColor: [UIColor clearColor]
-                                    };
-    _segmentedControl.tintColor = [UIColor blackColor];
-    [_segmentedControl setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
+//    NSDictionary *textAttributes =  @{
+//                                      UITextAttributeFont: [UIFont fontWithName:kTitleFontName size:13],
+//                                      UITextAttributeTextColor: [WZTheme titleTextColor],
+//                                      UITextAttributeTextShadowColor: [UIColor clearColor]
+//                                    };
+//    _segmentedControl.tintColor = [UIColor blackColor];
+//    [_segmentedControl setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
     
     [_segmentedControl addTarget:self action:@selector(segmentDidChange:) forControlEvents:UIControlEventValueChanged];
 }
@@ -291,9 +278,10 @@
     _headerMetadata2Label.textColor = [WZTheme detailTextColor];
     _headerView.backgroundColor = [WZTheme navigationColor];
     _headerDetailsContainerView.backgroundColor = [WZTheme navigationColor];
+//    _headerView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    _headerTextView.textColor = [WZTheme mainTextColor];
-    _headerTextView.linkColor = [WZTheme subtitleTextColor];
+//    _headerTextView.textColor = [WZTheme mainTextColor];
+//    _headerTextView.linkColor = [WZTheme subtitleTextColor];
     
     if ([_post.type isEqualToString:@"ask"]) {
         _headerDomainLabel.text = @"Ask Hacker News";
@@ -325,7 +313,7 @@
     if (_post.content) {
         headerTextViewBottomSpacingConstant = kHeaderTextBottomMargin;
         _headerTextView.hidden = NO;
-        _headerTextView.delegate = self;
+//        _headerTextView.delegate = self;
         _headerTextView.attributedText = _post.attributedContent;
         headerTextViewHeight = [_post contentHeightForWidth:kHeaderTextWidth] + kHeaderTextBottomMargin;
         contentHeight += headerTextViewHeight;
@@ -386,14 +374,14 @@
         break;
     }
     
-    for (int i = 0; i < segmentedControl.subviews.count; i++) {
-        id segment = segmentedControl.subviews[i];
-        if ([segment isSelected]) {
-            [segment setTintColor:[WZTheme segmentSelectedBackgroundColor]];
-        } else {
-            [segment setTintColor:[WZTheme segmentBackgroundColor]];
-        }
-    }
+//    for (int i = 0; i < segmentedControl.subviews.count; i++) {
+//        id segment = segmentedControl.subviews[i];
+//        if ([segment isSelected]) {
+//            [segment setTintColor:[WZTheme segmentSelectedBackgroundColor]];
+//        } else {
+//            [segment setTintColor:[WZTheme segmentBackgroundColor]];
+//        }
+//    }
 }
 
 #pragma mark - UITableViewDelegate

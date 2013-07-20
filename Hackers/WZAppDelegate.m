@@ -32,19 +32,19 @@
 //    #endif
 
     #ifndef DEBUG
-    [Crashlytics startWithAPIKey:@"6b3b4eba8698666ed08b19d6091a9728deaabab9"];
+//    [Crashlytics startWithAPIKey:@"6b3b4eba8698666ed08b19d6091a9728deaabab9"];
     NSLog(@"Crashlytics registered.");
     #endif
-    [WZTheme defaults];
-    
-    // initilise storyboard with JSSlidingViewController
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    WZMenuViewController *menuController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    _viewController = [[JSSlidingViewController alloc] initWithFrontViewController:menuController.mainNavViewController backViewController:menuController];
-    _viewController.useBouncyAnimations = NO;
-    self.window.rootViewController = _viewController;
-    [self.window makeKeyAndVisible];
+//    [WZTheme defaults];
+//    
+//    // initilise storyboard with JSSlidingViewController
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    WZMenuViewController *menuController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+//    _viewController = [[JSSlidingViewController alloc] initWithFrontViewController:menuController.mainNavViewController backViewController:menuController];
+//    _viewController.useBouncyAnimations = NO;
+//    self.window.rootViewController = _viewController;
+//    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -65,7 +65,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [GCOLaunchImageTransition transitionWithDuration:0.3 style:GCOLaunchImageTransitionAnimationStyleFade];
+//    [GCOLaunchImageTransition transitionWithDuration:0.3 style:GCOLaunchImageTransitionAnimationStyleFade];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -9,7 +9,6 @@
 #import "WZMenuViewController.h"
 #import "WZNavigationController.h"
 #import "WZAccountManager.h"
-#import "WZNavigationBar.h"
 
 #import <JSSlidingViewController.h>
 #import <IASKSpecifierValuesViewController.h>
@@ -23,14 +22,16 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *askCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *showNewCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *topCell;
-
+@property (nonatomic, strong) WZMainViewController *mainViewController;
 @end
 
 @implementation WZMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self layoutTableView];
+    
+    [self performSegueWithIdentifier:@"TopSegue" sender:self];
+//    [self layoutTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,9 +44,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (![self.tableView indexPathForSelectedRow]) {
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
-    }
+//    if (![self.tableView indexPathForSelectedRow]) {
+//        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -107,7 +108,7 @@
 -(UINavigationController *)settingsNavController {
     if (!_settingsNavController) {
         _settingsNavController = [[WZNavigationController alloc] initWithRootViewController:self.settingsViewController];
-        [_settingsNavController setValue:[[WZNavigationBar alloc]init] forKeyPath:@"navigationBar"];
+//        [_settingsNavController setValue:[[WZNavigationBar alloc]init] forKeyPath:@"navigationBar"];
     }
     
     return _settingsNavController;
@@ -121,39 +122,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([indexPath isEqual:[tableView indexPathForCell:_settingsCell]]) {
-        if (![[[WZDefaults appDelegate] viewController].frontViewController isEqual:self.settingsNavController]) {
-            [[[WZDefaults appDelegate] viewController] setFrontViewController:self.settingsNavController animated:YES completion:nil];
-        }
-        [self toggleSlider];
-    } else if ([indexPath isEqual:[tableView indexPathForCell:_topCell]]) {
-        [self showMainNavViewController];
-        [self.mainNavViewController setNewsType:WZNewsTypeTop];
-        [self toggleSlider];
-    } else if ([indexPath isEqual:[tableView indexPathForCell:_showNewCell]]) {
-        [self showMainNavViewController];
-        [self.mainNavViewController setNewsType:WZNewsTypeNew];
-        [self toggleSlider];
-    } else if ([indexPath isEqual:[tableView indexPathForCell:_askCell]]) {
-        [self showMainNavViewController];
-        [self.mainNavViewController setNewsType:WZNewsTypeAsk];
-        [self toggleSlider];
-    }
+//    if ([indexPath isEqual:[tableView indexPathForCell:_settingsCell]]) {
+//        if (![[[WZDefaults appDelegate] viewController].frontViewController isEqual:self.settingsNavController]) {
+//            [[[WZDefaults appDelegate] viewController] setFrontViewController:self.settingsNavController animated:YES completion:nil];
+//        }
+//        [self toggleSlider];
+//    } else if ([indexPath isEqual:[tableView indexPathForCell:_topCell]]) {
+//        [self showMainNavViewController];
+//        [self.mainNavViewController setNewsType:WZNewsTypeTop];
+//        [self toggleSlider];
+//    } else if ([indexPath isEqual:[tableView indexPathForCell:_showNewCell]]) {
+//        [self showMainNavViewController];
+//        [self.mainNavViewController setNewsType:WZNewsTypeNew];
+//        [self toggleSlider];
+//    } else if ([indexPath isEqual:[tableView indexPathForCell:_askCell]]) {
+//        [self showMainNavViewController];
+//        [self.mainNavViewController setNewsType:WZNewsTypeAsk];
+//        [self toggleSlider];
+//    }
 }
 
-- (void)showMainNavViewController {
-    if (![[[[WZDefaults appDelegate] viewController] frontViewController ] isEqual:self.mainNavViewController]) {
-        [[[WZDefaults appDelegate] viewController] setFrontViewController:self.mainNavViewController animated:YES completion:nil];
-    }
-}
-
-- (void)toggleSlider {
-    if ([[[WZDefaults appDelegate] viewController] isOpen]) {
-        [[[WZDefaults appDelegate] viewController] closeSlider:YES completion:nil];
-    } else {
-        [[[WZDefaults appDelegate] viewController] openSlider:YES completion:nil];
-    }
-}
 
 #pragma mark - IASKAppSettingsViewControllerDelegate
 
@@ -162,7 +150,7 @@
     
 }
 
-#pragma mark kIASKAppSettingChanged notification
+#pragma mark - kIASKAppSettingChanged notification
 - (void)settingDidChange:(NSNotification*)notification {
 	if ([notification.object isEqual:kSettingsInstapaperPassword]) {
         NSString *password = notification.userInfo[kSettingsInstapaperPassword];
@@ -170,12 +158,28 @@
 	}
 }
 
-#pragma Settings Changed
+#pragma mark - Settings Changed
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:kSettingsTheme]) {
 //        [WZTheme updateNavigationBar:_settingsNavController];
 //        _settingsNavController = nil;
         _mainNavViewController = nil;
+    }
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (!_mainViewController) {
+        _mainViewController = segue.destinationViewController;
+    }
+    
+    if ([segue.identifier isEqualToString:@"TopSegue"]) {
+        _mainViewController.newsType = WZNewsTypeTop;
+    } else if ([segue.identifier isEqualToString:@"NewSegue"]) {
+        _mainViewController.newsType = WZNewsTypeNew;
+    } else if ([segue.identifier isEqualToString:@"AskSegue"]) {
+        _mainViewController.newsType = WZNewsTypeAsk;
     }
 }
 
