@@ -301,8 +301,8 @@
         // standard cell
         WZPostModel *post = [self activeNews][indexPath.row];
         WZPostCell *cell = [tableView dequeueReusableCellWithIdentifier:postCellIdentifier];
-        cell.detailLabel.text = [NSString stringWithFormat:@"%lu points by %@", (unsigned long)post.points, post.user];
-        cell.moreDetailLabel.text = [NSString stringWithFormat:@"%@ · %lu comments", post.timeAgo, (unsigned long)post.commentsCount];
+        cell.detailLabel.text = [NSString stringWithFormat:@"%lu %@ by %@", (unsigned long)post.points, post.points == 1 ? @"point" : @"points",post.user];
+        cell.moreDetailLabel.text = [NSString stringWithFormat:@"%@ · %lu %@", post.timeAgo, (unsigned long)post.commentsCount, post.commentsCount == 1 ? @"comment" : @"comments"];
         cell.titleLabel.text = post.title;
         if ([post.type isEqualToString:@"ask"]) {
             cell.domainLabel.text = @"Ask Hacker News";
